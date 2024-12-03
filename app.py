@@ -33,6 +33,18 @@ def add_custom_css(font_family):
         .stSidebar {{
             background-color: #27272B;
         }}
+        .footer {{
+            position: relative;
+            bottom: 0;
+            width: 100%;
+            text-align: center;
+            font-size: 14px;
+            color: #555;
+            padding: 10px 0;
+            background-color: #f1f1f1;
+            box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }}
         </style>
         """,
         unsafe_allow_html=True,
@@ -110,6 +122,7 @@ def main():
 
     # Chat input
     if prompt := st.chat_input("Enter your message"):
+        
         # Display user message
         with st.chat_message("user"):
             st.write(f"{get_avatar('user')} {prompt}")
@@ -130,6 +143,16 @@ def main():
         # Update chat history
         message = {'human': prompt, 'AI': ai_response}
         st.session_state.chat_history.append(message)
+
+    # Add footer with developer info
+    st.markdown(
+        """
+        <div class="footer">
+            Developed by Mithanshu Hedau 
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
 
 if __name__ == "__main__":
     main()
